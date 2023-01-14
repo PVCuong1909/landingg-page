@@ -23,26 +23,28 @@ img.logo {
   border-right: 50px;
   height: auto;
 }
+
 .container {
   margin: 0px auto;
   max-width: 1400px;
+  position: relative;
 }
 body {
-  font-family: "Times New Roman", Times, serif;
+  /* font-family: "Times New Roman", Times, serif; */
   color: #fff;
-  background: black;
 }
+
 header {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  position: fixed;
 }
 header.sticky {
   background: #fff;
 }
-header.sticky #main-menu li,
-header.sticky a.icon {
+header.sticky #main-menu li a.name,
+header.sticky #main-menu li.has-child::after {
   color: black;
 }
 header.sticky img.logo {
@@ -57,11 +59,65 @@ header.sticky img.logo {
 ul#main-menu {
   display: flex;
 }
-ul#main-menu li {
+ul#main-menu li a.name {
   text-transform: uppercase;
-  padding: 30px 10px 30px 10px;
+  padding: 30px 20px 30px 20px;
   display: flex;
   transition: 0.3s;
+  font-family: monospace;
+  font-size: 17px;
+
+  color: #fff;
+}
+ul#main-menu li {
+  position: relative;
+}
+#main-menu ul.sub-menu {
+  position: absolute;
+  background: #fff;
+  padding: 15px 0px;
+  width: 200px;
+  display: none;
+}
+#main-menu ul.sub-menu li {
+  padding: 10px 15px;
+  font-family: monospace;
+  font-size: 15px;
+  color: black;
+}
+#main-menu ul.sub-menu li.has-child {
+  display: flex;
+  justify-content: space-between;
+}
+#main-menu ul.sub-menu li a {
+  color: black;
+  left: 0px;
+}
+#main-menu ul.sub-menu .sub-menu {
+  left: 200px;
+  top: 0px;
+}
+#main-menu li:hover > ul.sub-menu {
+  display: block;
+}
+#main-menu > li.has-child::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f107";
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 30px 0px;
+  transition: 2s;
+}
+#main-menu > li.has-child {
+  justify-content: space-between;
+}
+#main-menu .sub-menu > li.has-child::after {
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 a.icon {
   color: #fff;
@@ -72,20 +128,21 @@ a.icon {
   padding: 16px 45px;
   background: #fff;
   border-radius: 30px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
 }
 a.login {
   color: black;
+  font-family: monospace;
 }
 #banner {
   background: url(backround-đẹp01-1024x640.jpg);
   background-size: cover;
-  min-height: 850px;
+  min-height: 780px;
   width: 100%;
 }
 .inner-alignCenter {
-  height: 850px;
+  height: 780px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +155,7 @@ a.login {
   font-weight: 900;
   margin-bottom: 25px;
 }
-.banner-left-2{
+.banner-left-2 {
   font-size: 21px;
   line-height: 40px;
   font-weight: 600;
@@ -106,5 +163,272 @@ a.login {
 img.pic-19 {
   width: 710px;
   height: 450px;
+}
+#banner div.buttom {
+  padding-top: 30px;
+  text-transform: uppercase;
+}
+#banner div.buttom a.popup {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-family: monospace;
+  font-weight: 700;
+  margin-left: 10px;
+}
+#banner div.buttom .circle {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  left: 10px;
+}
+#banner div.buttom .element {
+  height: 80px;
+  width: 80px;
+  margin-left: 0px;
+  position: absolute;
+  background-color: #fff;
+  animation: pulse-border 1500ms ease-out infinite;
+}
+@keyframes pulse-border {
+  0% {
+    transform: scale(0.3);
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2);
+    height: 80px;
+    width: 80px;
+    transition-delay: 0.3s;
+    border-radius: 100%;
+    opacity: 0.1;
+  }
+}
+#banner div.buttom .circle::after {
+  content: "\f04b";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: rgb(5, 165, 170);
+}
+section {
+  width: 100%;
+  height: 110px;
+  position: absolute;
+  bottom: 80px;
+}
+.wave.wave1 {
+  background: url(wave.png);
+  width: 100%;
+  height: 110px;
+  background-size: 1000px 110px;
+  animation: animate 30s linear infinite;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+  z-index: 1000;
+  position: absolute;
+}
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+.wave.wave2 {
+  position: absolute;
+  background: url(wave.png);
+  width: 100%;
+  height: 110px;
+  background-size: 1000px 110px;
+  animation: animate2 15s linear infinite;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+  z-index: 999;
+}
+@keyframes animate2 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 2000px;
+  }
+}
+.wave.wave3 {
+  position: absolute;
+  background: url(wave.png);
+  width: 100%;
+  height: 110px;
+  background-size: 1000px 110px;
+  animation: animate3 15s linear infinite;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+  z-index: 998;
+}
+@keyframes animate3 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 2000px;
+  }
+}
+.wave.wave4 {
+  position: absolute;
+  background: url(wave.png);
+  width: 100%;
+  height: 110px;
+  background-size: 1000px 110px;
+  animation: animate4 10s linear infinite;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+  z-index: 997;
+}
+@keyframes animate4 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 2000px;
+  }
+}
+.elementor {
+  width: 100%;
+  height: 870px;
+  padding: 120px 0px;
+  background-image: url(35.png);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 12% auto;
+  color: black;
+}
+.elementor .elementor-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 630px;
+}
+.elementor .elementor-section-left {
+  width: 500px;
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+}
+.elementor .elementor-section-left h4.title-selector {
+  color: #5138ee;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.elementor .elementor-section-left h2.subtitle-selector {
+  color: #202949;
+  font-size: 36px;
+  padding-bottom: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.elementor .elementor-section-left p.sec-text {
+  color: #666666;
+  margin: 0px 15px 0px 0px;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.7;
+  padding-bottom: 40px;
+}
+.elementor .elementor-main {
+  display: flex;
+  align-items: center;
+}
+.elementor .elementor-widget {
+  padding: 0px 30px 0px 0px;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+  border-color: #e7e7e7;
+  width: 210px;
+}
+.elementor .elementor-widget-top,
+.elementor .elementor-counter-top {
+  color: #202942;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.elementor .elementor-widget-bottom,
+.elementor .elementor-counter-bottom {
+  color: #666666;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+}
+.elementor .elementor-counter {
+  padding-left: 30px;
+}
+.elementor div.elementor-section-middle {
+  width: 352px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.elementor div.elementor-section-right {
+  width: 352px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.elementor div.elementor-widget-conatain {
+  width: 302px;
+  height: 260px;
+  padding: 35px 35px;
+  box-shadow: 0px 20px 50px 1px rgb(0 0 0 / 10%);
+}
+.elementor div.elementor-box {
+  height: 75px;
+  margin-bottom: 10px;
+}
+.elementor h4.elementor-box-icon {
+  color: #202942;
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.elementor div.elementor-box-container {
+  height: 105px;
+}
+.elementor div.elementor-box-icon-description {
+  color: #666666;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+}
+.elementor-2 {
+  width: 100%;
+  height: 620px;
+  padding-bottom: 120px;
+}
+.elementor-2 div.elementor-section-2 {
+  height: 500px;
 }
